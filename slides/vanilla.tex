@@ -1,0 +1,97 @@
+\documentclass[9pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\graphicspath{{images/}{images/theme/}}
+\setbeamertemplate{blocks}[rounded][shadow]
+\setbeamercolor{block title}{fg=white,bg=blue!70}
+\setbeamercolor{block body}{bg=blue!20}
+
+	
+\usepackage{tabularx}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{footline}[frame number]
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage[mathcal]{euscript}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\usepackage{hyperref}
+\usepackage{multirow}
+%\hypersetup{colorlinks=true}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\usepackage{bm}
+%\usepackage[numbers]{natbib} %Apa style for citation
+\usepackage{bibentry}
+\nobibliography*
+
+\newcommand{\footfullcite}[1]{\footnote{\scriptsize{\bibentry{#1}}}}
+
+%% DONNES UTILES A LA PAGE DE TITRE ET AU PIED DE PAGE...
+\title{Apprentissage automatique pour données spatiales}
+\subtitle{Localisation basée image en conditions difficiles par apprentissage de modalités}
+\author{\textbf{Nathan Piasco}, Désiré Sidibé, Valérie Gouet-Brunet et Cédric Demonceaux}
+\institute{$28^{iemes}$ Journées de la Recherche} % ON SE SERT DE INSTITUTE POUR METTER LE LIEUX DE LA CONF
+\date{19/04/2019}
+
+%\definecolor{IGNVert}{RGB}{148, 192,  22}
+%\definecolor{IGNGris}{RGB}{112, 119, 122}
+%\definecolor{IGNRouge}{RGB}{255, 100, 100}
+\usepackage{ragged2e}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+%\beamertemplatenavigationsymbolsempty
+\usetheme{ign}
+
+\begin{document}
+
+\begin{frame}[plain,c]
+	\titlepage
+\end{frame}
+
+\begin{frame}{Research context}
+	\textbf{Nathan Piasco}$^{1, 2}$, Désiré Sidibé$^1$, Valérie Gouet-Brunet$^2$ et Cédric Demonceaux$^1$
+	\vfill	
+	
+	\begin{enumerate}
+		\item ImViA-VIBOT, 	ERL CNRS  6000,  Universit\'e  Bourgogne Franche-Comt\'e
+		\item LaSTIG MATIS, IGN, ENSG, Universit\'e Paris-Est, 	F-94160 Saint-Mand\'e, France
+	\end{enumerate}
+	\vfill
+		
+	ANR project \textbf{pLaTINUM}
+	\vfill
+	
+	\begin{tabular}{c c c c}
+		\includegraphics[width=0.15\linewidth]{images/logos/ign_logo} & 
+			\includegraphics[width=0.15\linewidth]{images/logos/cnrs} &
+					\includegraphics[width=0.27\linewidth]{images/logos/ubfc} &
+							\includegraphics[width=0.25\linewidth]{images/logos/imvia} \\
+	\end{tabular}
+\end{frame}
+
+\input{sections/introduction}
+\input{sections/method}
+\input{sections/results}
+\input{sections/conclusion}
+%\input{sections/posenet}
+%\input{sections/dsac}
+%\input{sections/dicp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Biblio
+\begin{frame}[allowframebreaks,plain]
+\frametitle{References}
+
+\bibliographystyle{abbrv}
+\scriptsize{\bibliography{bib/mendeley,bib/others}}
+
+\end{frame}
+
+\appendix
+
+\end{document}

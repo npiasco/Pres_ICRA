@@ -1,0 +1,313 @@
+\section{{\fontsize{20}{20}\selectfont Localization in challenging conditions}}
+
+\label{sec:results}
+
+\begin{frame}{Dataset for Localization in challenging conditions}
+	We test our proposal on RobotCar\footfullcite{Maddern2016} dataset with 4 different localization scenario.
+	\begin{figure}
+		\includegraphics[width=0.7\linewidth]{vect/res/dataset}
+	\end{figure}		
+\end{frame}
+%
+%\begin{frame}{Implementation details}
+%	Base encoder architecture:
+%	\begin{itemize}
+%		\item Alexnet, small network (A),
+%		\item Resnet18, huge network (Rt).
+%	\end{itemize}
+%	\uncover<2->{
+%		Descriptors:
+%		\begin{itemize}
+%			\item MAC\footfullcite{Arandjelovic2017} (Maximum of activation, no trainable parameters),	
+%			\item NetVLAD\footfullcite{Radenovic2017} (soft VLAD aggregation with trainable parameters).
+%		\end{itemize}
+%	}
+%	\uncover<3->{
+%		Training:
+%		\begin{itemize}
+%			\item 400 triplets ($\sim$10k images)
+%			\item Adam optimizer (lr=1e-4, weight decay=1e-3, batch=10-25 triplets)
+%		\end{itemize}
+%	}
+%	\uncover<4->{
+%		Baseline:
+%		\begin{itemize}
+%			\item Same network trained only with RGB data.
+%		\end{itemize}
+%	}
+%	
+%\end{frame}
+%
+%\begin{frame}{Results}
+%	\only<1>{Metric: we compute the distance between \textbf{the top ranked} returned database image position and the query ground truth position and report the percentage of queries well located under a threshold D (15, 25 and 50 meters).}
+%	\only<2>{Overall improvement for all scenario.}
+%	\only<3>{Best improvement on the winter scenario (+2\%, +4\% and +3\%).}
+%	\vfill
+%	\input{tab/result_sum.tex}
+%\end{frame}
+
+\begin{frame}{Results: long-term localization}
+	\scriptsize
+	\begin{tabularx}{1.08\linewidth}{X X X X X}
+		Query & NetVLAD (our) & NetVLAD & MAC (our) & MAC \\
+	\end{tabularx}
+	\fboxsep=1pt%padding thickness
+	\fboxrule=1pt
+
+	\includegraphics[width=0.15\linewidth]{ims_res/lt/q1/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q1/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q1/NetVLAD.jpg}}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q1/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q1/MAC.jpg}}
+	
+	\includegraphics[width=0.15\linewidth]{ims_res/lt/q2/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q2/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q2/NetVLAD.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q2/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q2/MAC.jpg}}
+	
+	\includegraphics[width=0.15\linewidth]{ims_res/lt/q3/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q3/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q3/NetVLAD.jpg}}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q3/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q3/MAC.jpg}}
+	
+	\includegraphics[width=0.15\linewidth]{ims_res/lt/q4/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q4/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q4/NetVLAD.jpg}}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q4/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.15\linewidth]{ims_res/lt/q4/MAC.jpg}}
+	
+\end{frame}
+
+\begin{frame}{Results: cross-season localization}
+	\scriptsize
+	\begin{tabularx}{1.08\linewidth}{X X X X X}
+		Query & NetVLAD (our) & NetVLAD & MAC (our) & MAC \\
+	\end{tabularx}
+	\fboxsep=1pt%padding thickness
+	\fboxrule=1pt
+
+	\includegraphics[width=0.14\linewidth]{ims_res/snow/q1/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q1/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q1/NetVLAD.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q1/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q1/MAC.jpg}}
+	
+	\includegraphics[width=0.14\linewidth]{ims_res/snow/q2/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q2/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q2/NetVLAD.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q2/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q2/MAC.jpg}}
+	
+	\includegraphics[width=0.14\linewidth]{ims_res/snow/q3/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q3/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q3/NetVLAD.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q3/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q3/MAC.jpg}}
+	
+	\includegraphics[width=0.14\linewidth]{ims_res/snow/q4/Q.jpg}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q4/NetVLAD_our.jpg}}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q4/NetVLAD.jpg}}\hfill
+	\fcolorbox{green}{green}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q4/MAC_our.jpg}}\hfill
+	\fcolorbox{red}{red}{\includegraphics[width=0.14\linewidth]{ims_res/snow/q4/MAC.jpg}}
+\end{frame}
+
+\begin{frame}{Results: long-term localization}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=0.9\linewidth]{vect/res/lt}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\linewidth}
+		\begin{minipage}{0.49\linewidth}
+			\includegraphics[trim={90 140 95 100},clip,width=\linewidth]{vect/res/legend}		
+		\end{minipage}
+		\begin{minipage}{0.49\linewidth}
+		   \scriptsize
+			Competitors:
+			\begin{itemize}
+				\item[\textbf{-{}-{}-}] Only RGB [RGB]
+				\item[\textbf{-x-}] Hallucination network [RGBtD (Hall)]
+				\item[\textbf{-o-}] Our proposal [RGBtD (our)]
+			\end{itemize}
+		\end{minipage}
+		\vspace{0.5cm}		
+		
+		Metric: we compute the distance between \textbf{the top ranked} returned database image position and the query ground truth position and report the percentage of queries well located under a threshold D.
+	\end{minipage}
+\end{frame}
+
+\begin{frame}{Results: cross-season localization}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=0.9\linewidth]{vect/res/snow}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\linewidth}
+		\includegraphics[trim={90 140 95 100},clip,width=0.5\linewidth]{vect/res/legend}		
+		\vspace{0.5cm}		
+				
+		Competitors:
+		\begin{itemize}
+			\item[\textbf{-{}-{}-}] Only RGB [RGB]
+			\item[\textbf{-x-}] Hallucination network$^3$ [RGBtD (Hall)]
+			\item[\textbf{-o-}] Our proposal [RGBtD (our)]
+		\end{itemize}
+	\end{minipage}
+	\textcolor{white}{\footfullcite{Hoffman2016}}
+\end{frame}
+
+\begin{frame}{Failure case: Night to day}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=0.9\linewidth]{vect/res/night}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\linewidth}
+		\includegraphics[trim={90 140 95 100},clip,width=0.5\linewidth]{vect/res/legend}
+		\vspace{0.5cm}
+		
+		Less than $20\%$ of retrieved candidates lie in a radius of $30m$ around the queries!
+	\end{minipage}
+\end{frame}
+
+
+\begin{frame}{Improving night to day localization}
+	\begin{figure}
+		\centering
+		\begin{minipage}{0.6\linewidth}
+			\includegraphics[width=0.9\linewidth]{im/res/night_input}
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			{Night images that serve as input for the generative network}
+		\end{minipage}
+	\end{figure}
+	\vspace{-0.5cm}
+	\begin{figure}
+		\centering
+		\begin{minipage}{0.6\linewidth}
+			\includegraphics[width=0.9\linewidth]{im/res/night_gt}
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			\raggedright		
+			{Ground truth depth maps}
+		\end{minipage}
+	\end{figure}	
+	\vspace{-0.5cm}
+	\begin{figure}
+		\centering
+		\begin{minipage}{0.6\linewidth}
+			\includegraphics[width=0.9\linewidth]{im/res/night_noft}
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			\raggedright		
+			{Generated depth maps}
+		\end{minipage}
+	\end{figure}
+	\vfill
+
+	Our network is not able to generate proper depth maps from night images.
+
+\end{frame}
+
+\begin{frame}{Recall - Training policy}
+	\begin{minipage}{0.6\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{vect/method/fig3/6}	
+	\end{minipage}\hfill
+	\only<1>{
+	\begin{minipage}{0.3\linewidth}
+		\raggedright
+		Data required to train the depth reconstruction part of our system:
+		\vspace{0.5cm}
+		
+		\includegraphics[width=\linewidth]{vect/method/fig3/pair}
+	\end{minipage}			
+	}
+	\only<2>{
+	\begin{minipage}{0.3\linewidth}
+		\raggedright
+		We fine tune our system with pairs of night image/depth map
+		\vspace{0.5cm}
+		
+		\includegraphics[width=\linewidth]{vect/res/fig1/night_pair}
+	\end{minipage}			
+	}
+\end{frame}
+
+\begin{frame}{Improving night to day localization}
+	\begin{figure}
+		\centering
+		\begin{minipage}{0.6\linewidth}
+			\includegraphics[width=0.9\linewidth]{im/res/night_input}
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			Night images that serve as input for the generative network
+		\end{minipage}
+	\end{figure}
+	\vspace{-0.5cm}
+	\begin{figure}
+		\centering
+		\begin{minipage}{0.6\linewidth}
+			\includegraphics[width=0.9\linewidth]{im/res/night_gt}
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			\raggedright		
+			Ground truth depth maps
+		\end{minipage}
+	\end{figure}	
+	\vspace{-0.5cm}
+	\begin{figure}
+		\centering
+		\begin{minipage}{0.6\linewidth}
+			\includegraphics[width=0.9\linewidth]{im/res/night_noft}
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			\raggedright		
+			Generated depth maps
+		\end{minipage}
+	\end{figure}
+
+		\vspace{-0.5cm}
+		\begin{figure}
+			\centering
+			\begin{minipage}{0.6\linewidth}
+				\includegraphics[width=0.9\linewidth]{im/res/night_ft}
+			\end{minipage}
+			\begin{minipage}{0.35\linewidth}
+				\raggedright
+				Generated depth maps, with fine tuning
+			\end{minipage}
+		\end{figure}
+
+	\vfill
+
+		Thanks to the design of our method, we can improve generation performances without collecting \textbf{strongly labeled} data (i.e images triplets), we simply use \textbf{weakly-annotated} training pairs of night image/depth map.
+
+\end{frame}
+
+\begin{frame}{Results: Night to day (fine tuning)}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=0.9\linewidth]{vect/res/night}
+			
+			{Night vs daytime (w/o fine tuning)}
+		\end{figure}
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=0.9\linewidth]{vect/res/nightft}
+			
+			{Night vs daytime (w/ fine tuning)}
+		\end{figure}
+	\end{minipage}
+	\vfill 
+	
+	{\small With fine tuning with a small amount of data, we are able to nearly double localization performances.}
+\end{frame}
