@@ -8,11 +8,11 @@
 		We test our proposal on RobotCar$^2$ dataset with various localization scenario and different combination of encoders/descriptors.
 		\vspace{1cm}
 		
-		\uncover<2->{
+		\uncover<3>{
 		\textbf{Metric:} we compute the distance between \textbf{the top ranked} returned database image position and the query ground truth position and report the percentage of queries well located under a threshold D.
 		}
 	\end{minipage}\hfill
-	\uncover<3>
+	\uncover<2->
 	{
 	\begin{minipage}[t]{0.32\linewidth}
 		\textbf{Competitors:}
@@ -187,27 +187,21 @@
 		\centering
 		\includegraphics[width=\linewidth]{vect/method/fig3/6}	
 	\end{minipage}\hfill
-	\only<1>{
 	\begin{minipage}{0.3\linewidth}
 		\raggedright
-		Data required to train the depth reconstruction part of our system:
-		\vspace{0.5cm}
+		Thanks to the design of our method, we can improve generation performances of the decoder without impacting the descriptors networks.
 		
-		\includegraphics[width=\linewidth]{vect/method/fig3/pair}
-	\end{minipage}			
-	}
-	\only<2>{
-	\begin{minipage}{0.3\linewidth}
-		\raggedright
-		We fine tune our system with pairs of night image/depth map
+		\uncover<2>{
+		We fine tune our system with pairs of night image/depth map.
 		\vspace{0.5cm}
 		
 		\includegraphics[width=\linewidth]{vect/res/fig1/night_pair}
+		}
 	\end{minipage}			
-	}
 \end{frame}
 
 \begin{frame}{Improving night to day localization}
+\centering
 \begin{minipage}{0.7\linewidth}
 	\centering
 	
@@ -255,13 +249,6 @@
 			\end{minipage}
 		\end{figure}
 \end{minipage}
-	\hfill
-	\begin{minipage}{0.29\linewidth}
-		\raggedleft
-		Thanks to the design of our method, we can improve generation performances without collecting \textbf{strongly labeled} data (i.e images triplets), we simply use \textbf{weakly-annotated} training pairs of night image/depth map.		
-	\end{minipage}
-
-
 \end{frame}
 
 \begin{frame}{Results: Night to day (fine tuning)}
