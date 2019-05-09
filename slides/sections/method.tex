@@ -1,20 +1,19 @@
 \section{Learning through missing modality}
 
 \label{sec:method}
+
 \begin{frame}{CNN as global descriptor}
-	\begin{figure}
-		
-		\includegraphics[width=0.5\linewidth]{vect/intro/Desc}
-		
-		We use a CNN as trainable global image descriptor
-	\end{figure}
-	\vfill	
-	\uncover<2>{CNN global image descriptor can be trained with \textit{triplet loss} function\footfullcite{Arandjelovic2017}.}
-\end{frame}
-
-
-\begin{frame}{Training a descriptor}
 	\only<1>
+	{
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{vect/method/fig2/0n}
+	\end{figure}
+	\vfill
+	\vspace{-1.0cm}
+	We use a CNN as trainable global image descriptor\footfullcite{Arandjelovic2017}.
+	}
+	\only<2>
 	{
 	\begin{figure}
 	\centering
@@ -23,20 +22,20 @@
 	\vfill
 	\textbf{Positive example}: same scene as anchor. \textbf{Negative example}: unrelated to anchor.
 	}
-	\only<2>
-	{
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{vect/method/fig2/2}	
-	\end{figure}	
-	\vfill
-	Descriptors computed with the \textbf{same}	deep descriptor.
-	}
 	\only<3>
 	{
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{vect/method/fig2/3}
+	\includegraphics[width=0.7\linewidth]{vect/method/fig2/2n}	
+	\end{figure}	
+	\vfill
+	Descriptors computed with the \textbf{same}	deep descriptor.
+	}
+	\only<4>
+	{
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{vect/method/fig2/3n}
 	\end{figure}	
 	\vfill
 	\textbf{Triplet loss} penalizes difference between anchor \& positive example and similarity between anchor \& negative example.
