@@ -69,7 +69,7 @@
 	
     \begin{figure}
       \centering
-      \includegraphics[width=\linewidth]{vect/intro/fig1/1}
+      \includegraphics[width=\linewidth]{vect/intro/fig1/intro_poster}
     \end{figure}
     
      \begin{enumerate}
@@ -80,17 +80,10 @@
   \end{block}
 
   \begin{block}{Challenge in visual based localization}
-	\begin{figure}
-		\includegraphics[width=\linewidth]{vect/intro/fig4/1}
-	\end{figure}		
-    Drastic \textbf{visual changes} occur due to season/day-night cycles.
-  \end{block}
-
-  \begin{block}{Geometry to the rescue}
+     Drastic \textbf{visual changes} occur due to season/day-night cycles.
 
 	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\linewidth]{vect/intro/fig4/2}
+		\includegraphics[width=\linewidth]{vect/intro/fig4/radvsdepth}
 	\end{figure}
 
 	However, {geometric information} still remains the same. Unfortunately, geometric information is not always available.
@@ -98,19 +91,49 @@
 	\textbf{How to use partial geometric information to improve image descriptor for localization?}
   \end{block}
 
-  \begin{block}{CNN as global descriptor}
-    We use a CNN as trainable global image descriptor.
+  \begin{block}{System components}
+    \begin{minipage}{0.75\linewidth}
+        \centering
+    	\begin{figure}
+		  \includegraphics[width=\linewidth]{vect/method/fig2/3n}
+		\end{figure}	
+    \end{minipage}\hfill
+    \begin{minipage}{0.23\linewidth}
+      	{\footnotesize Trainable global image descriptor} 
+    \end{minipage}
     
-	\begin{figure}
-	  \centering
-	  \includegraphics[width=\linewidth]{vect/method/fig2/3n}
-	\end{figure}	
-
-	\textbf{Triplet loss} penalizes difference between anchor \& positive example and similarity between anchor \& negative example:
-	\begin{equation*}
-     	L_{\mathrm{triplet}} = max\left(0, \lambda + \norm{f(q_{im}) - f(q_{im}^+)}_2 - \norm{f(q_{im}) - f(q_{im}^-)}_2 \right),
-	\end{equation*}
+    \begin{minipage}{0.75\linewidth}
+        \centering
+    	\begin{figure}
+		  \includegraphics[width=\linewidth]{vect/method/fig3/enc_dec}
+		\end{figure}	
+    \end{minipage}\hfill
+    \begin{minipage}{0.23\linewidth}
+      	{\footnotesize Depth from monocular network}   
+    \end{minipage}
+    \vspace{1.5cm}
+    
+    \begin{minipage}[t]{0.52\linewidth}
+    \textbf{Global image descriptor}
+    
+    {Triplet loss} penalizes difference between anchor \& positive example and similarity between anchor \& negative example:
+	\begin{multline*}
+     	L = \mathrm{max}\left(\lambda + \norm{f(q_{im}) - f(q_{im}^+)}_2 \right. \\	
+	\left. - \norm{f(q_{im}) - f(q_{im}^-)}_2, 0 \right),
+	\end{multline*}
 where $\{q_{im}, q_{im}^+, q_{im}^-\}$ a image triplet, $f(x_{im})$ the global descriptor of image $x_{im}$ and $\lambda$ an hyper-parameter controlling the margin between positive and negative examples.
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.45\linewidth}
+	\textbf{Depth from monocular}
+	
+    We use an encoder/decoder architecture to generate depth map from monocular images.
+    
+	Training is done in a supervised manner by minimising $L_1$ loss function:
+	\begin{equation*}
+     	L = \norm{G(I) - D_I)}_1,
+	\end{equation*}
+where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground truth depth map associated to image $I$.    
+    \end{minipage}
   \end{block}
   
 \end{column}
@@ -118,26 +141,11 @@ where $\{q_{im}, q_{im}^+, q_{im}^-\}$ a image triplet, $f(x_{im})$ the global d
 \separatorcolumn
 
 \begin{column}{\colwidth}  
-  
-    \begin{block}{Depth from monocular}
-    We use an encoder/decoder architecture to generate depth map from monocular images.
-    
-	\begin{figure}
-	  \centering
-	  \includegraphics[width=0.5\linewidth]{vect/method/fig2/3n}
-	\end{figure}	
-	
-	Training is done in a supervised manner by minimising $L_1$ loss function:
-	\begin{equation*}
-     	L_{\mathrm{modal}} = \norm{G(I) - D_I)}_1,
-	\end{equation*}
-where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground truth depth map associated to image $I$.
-  \end{block}
 
   \begin{block}{Learning through missing modality}
     \begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{vect/method/fig3/5}	    
+		\includegraphics[width=\linewidth]{vect/method/fig3/final_color}	    
     \end{figure}
     
     \begin{enumerate}
