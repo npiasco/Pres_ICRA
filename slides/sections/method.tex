@@ -2,43 +2,38 @@
 
 \label{sec:method}
 
-\begin{frame}{CNN as global descriptor}
-	\only<1>
-	{
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{vect/method/fig2/0n}
-	\end{figure}
-	\vfill
-	\vspace{-1.0cm}
-	We use a CNN as trainable global image descriptor\footfullcite{Arandjelovic2017}.
-	}
-	\only<2>
-	{
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{vect/method/fig2/1}
-	\end{figure}
-	\vfill
-	\textbf{Positive example}: same scene as anchor. \textbf{Negative example}: unrelated to anchor.
-	}
-	\only<3>
-	{
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{vect/method/fig2/2n}	
-	\end{figure}	
-	\vfill
-	Descriptors computed with the \textbf{same}	deep descriptor.
-	}
-	\only<4>
-	{
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{vect/method/fig2/3n}
-	\end{figure}	
-	\vfill
-	\textbf{Triplet loss} penalizes difference between anchor \& positive example and similarity between anchor \& negative example.
+\begin{frame}{System components}
+	\begin{minipage}[t]{0.50\linewidth}
+	\only<1>{
+		\begin{figure}
+		\centering		
+		\includegraphics[width=\linewidth]{vect/method/fig2/0n}
+		\end{figure}
+		
+		\vfill
+		We use a CNN as trainable global image descriptor\footfullcite{Arandjelovic2017}.
+		}
+		\only<2->
+		{
+		\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{vect/method/fig2/3n}
+		\end{figure}	
+		
+		\vfill
+		The deep image descriptor can be train with image triplet and triplet loss.
+		}
+	\end{minipage}\hfill
+	\uncover<3>{
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{figure}	
+			\centering
+			\includegraphics[width=\linewidth]{vect/method/fig3/enc_dec}	
+		\end{figure}
+		
+		\vfill		
+		We trained a encoder-decoder to produce depth map according to monocular images.
+	\end{minipage}
 	}
 \end{frame}
 
