@@ -12,6 +12,7 @@
 \usepackage[size=a0,scale=1.0, orientation=portrait]{beamerposter}
 \usetheme{gemini}
 \usecolortheme{gemini}
+%\usecolortheme{custom}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -19,6 +20,7 @@
 \usepackage{amsmath} % assumes amsmath package installed
 \usepackage{amssymb}  % assumes amsmath package installed
 \usepackage{multirow}
+\usepackage{tabularx}
 
 \graphicspath{{../slides/}}
 
@@ -62,6 +64,8 @@
 	  We propose a new approach for outdoor large scale image based localization that can deal with challenging scenarios like cross-season, cross-weather, day/night and long-term localization. The key component of our method is a new learned global image descriptor, that can effectively benefit from scene geometry information during training. At test time, our system is capable of inferring the depth map related to the query image and use it to increase localization accuracy.
 
   \end{alertblock}
+  
+  \vspace{2cm}
 
   \begin{block}{Problem statement}
 
@@ -74,10 +78,12 @@
     
      \begin{enumerate}
        \item Collect geolocalized images on the area of interest.
-       \item Caste the image localization problem as an \textbf{image-retrieval problem}.
+       \item Cast the image localization problem as an \textbf{image-retrieval problem}.
        \item Transfer the pose of the closest retrieved candidate to the query.
      \end{enumerate}
   \end{block}
+  
+  \vspace{2cm}
 
   \begin{block}{Challenge in visual based localization}
      Drastic \textbf{visual changes} occur due to season/day-night cycles.
@@ -90,6 +96,8 @@
 
 	\textbf{How to use partial geometric information to improve image descriptor for localization?}
   \end{block}
+  
+  \vspace{2cm}
 
   \begin{block}{System components}
     \begin{minipage}{0.75\linewidth}
@@ -121,7 +129,7 @@
      	L = \mathrm{max}\left(\lambda + \norm{f(q_{im}) - f(q_{im}^+)}_2 \right. \\	
 	\left. - \norm{f(q_{im}) - f(q_{im}^-)}_2, 0 \right),
 	\end{multline*}
-where $\{q_{im}, q_{im}^+, q_{im}^-\}$ a image triplet, $f(x_{im})$ the global descriptor of image $x_{im}$ and $\lambda$ an hyper-parameter controlling the margin between positive and negative examples.
+where $\{q_{im}, q_{im}^+, q_{im}^-\}$ is an image triplet, $f(x_{im})$ the global descriptor of image $x_{im}$ and $\lambda$ an hyper-parameter controlling the margin between positive and negative examples.
     \end{minipage}\hfill
     \begin{minipage}[t]{0.45\linewidth}
 	\textbf{Depth from monocular}
@@ -142,6 +150,26 @@ where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground tru
 
 \begin{column}{\colwidth}  
 
+	\vspace{2cm}
+	
+		\begin{minipage}[t]{0.20\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/logos/ign_logo} 
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.19\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/logos/cnrs} 
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.32\linewidth}
+			\centering		
+			\includegraphics[width=\linewidth]{images/logos/ubfc} 
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.20\linewidth}
+			\includegraphics[width=\linewidth]{images/logos/vibot}
+		\end{minipage}\hfill
+	
+	\vspace{2cm}
+	
   \begin{block}{Learning through missing modality}
     \begin{figure}
 		\centering
@@ -149,9 +177,9 @@ where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground tru
     \end{figure}
     
     \begin{enumerate}
-      \item We use triplet loss to produce strong image descriptor.
+      \item We use triplet loss to produce a strong image descriptor.
       \item Latent image representation is given to a CNN decoder to reproduce the scene geometry.
-      \item We use another CNN to produce strong depth map descriptor.
+      \item We use a second CNN to produce a strong depth map descriptor.
       \item Final descriptor is obtained by concatenating image and depth map descriptors.
     \end{enumerate}        
     
@@ -162,6 +190,8 @@ where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground tru
     \end{itemize}
   \end{block}
 
+  \vspace{1.5cm}
+  
   \begin{block}{System deployment}
 	\begin{figure}
 	  \centering
@@ -170,27 +200,37 @@ where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground tru
 
 	\textbf{The depth information is only needed during the training step!}
   \end{block}
-  
+	
+  \vspace{1.5cm}
+  	
   \begin{block}{Dataset \& Implementation}
-	We test our proposal on RobotCar dataset with 4 different localization scenario~\cite{Maddern2016}.
+  
+  Training parameters:
+  \begin{itemize}
+  	\item \texttt{pytorch} framework
+  	\item adam optimizer with lr=0.0001 and wd=0.001
+  	\item batches of 10 or 25 triplets, trained up to 50 epochs
+  \end{itemize}
+  
+	\begin{table}
+  \begin{tabular}{l | l || l | l}
+  	\multicolumn{2}{c}{\textbf{Encoder}} & \multicolumn{2}{c}{\textbf{Descriptor}} \\
+  	\hline
+	Alexnet (A) & Resnet18 (Rt) & MAC~\cite{Radenovic2017} & NetVLAD~\cite{Arandjelovic2017} \\
+  \end{tabular}
+  \caption{Four possible combination of encoder/descriptor}
+  \end{table}
+  
+  Competitors:
+  \begin{itemize}
+  	\item Only RGB (dotted line)
+  	\item Hallucination network~\cite{Hoffman2016} (plain line with cross)
+  \end{itemize}
+  
+	We train and test our proposal on RobotCar dataset with 4 different localization scenarios~\cite{Maddern2016}.
 	\begin{figure}
 		\includegraphics[width=\linewidth]{vect/res/dataset}
 	\end{figure}
-	
-	\begin{table}
-  \begin{tabular}{l l}
-    \multirow{2}{*}{\textbf{Encoder}} & Alexnet, small network (A) \\
-    										 & Resnet18, huge network (Rt) \\
-    \hline
-    \multirow{2}{*}{\textbf{Descriptor}} & MAC~\cite{Radenovic2017} \\
-    											 & NetVLAD~\cite{Arandjelovic2017} \\
-    \hline    											
-    \multirow{2}{*}{\textbf{Competitor}} & Only RGB \\
-                      							   & Hallucination network~\cite{Hoffman2016} \\			  
-  \end{tabular}
-  \caption{Implementation details}
-  \end{table}
-		
   \end{block}
 \end{column}
 
@@ -292,7 +332,7 @@ where $G(I)$ is the generated depth map from image $I$ and  $D_I$ the ground tru
   \begin{alertblock}{Perspectives}
 	\begin{itemize}
 		\item Test our proposal on other modalities.
-		\item Investigate less trivial descriptor fusion method.
+		\item Investigate a less trivial descriptors fusion method.
 		\item Implement our method for other visual localisation tasks (e.g. direct pose regression).
 	\end{itemize}
   \end{alertblock}  
