@@ -4,27 +4,47 @@
 
 \begin{frame}{Dataset for Localization in challenging conditions}
 	
-	\begin{minipage}[t]{0.6\linewidth}
-		We test our proposal on RobotCar$^1$ dataset with various localization scenarios and different combination of encoders/descriptors.
-		\vspace{1cm}
+	\textcolor{mLightBrown}{\textbf{Dataset:}} we train and test our proposal on RobotCar\footfullcite{Maddern2016} dataset
+	
+	\textcolor{mLightBrown}{\textbf{Deep architectures:}} Resnet18 or Alexnet encoder combined with NetVLAD or MAC descriptor
+
+	\vfill
+	
+	\uncover<2->{
+		\textcolor{mLightBrown}{\textbf{Competitors:}} Hallucination network\footfullcite{Hoffman2016} \& same descriptor only trained with RGB
+	}
+	
+	\vfill
+	
+	\uncover<3->{
+		\textcolor{mLightBrown}{\textbf{Metric:}} we compare the distance between \textbf{the top ranked} returned database image position and the query ground truth position.
 		
-		\uncover<3>{
-		\textbf{Metric:} we compute the distance between \textbf{the top ranked} returned database image position and the query ground truth position and report the percentage of queries well located under a threshold D.
-		}
-	\end{minipage}\hfill
-	\uncover<2->
-	{
-	\begin{minipage}[t]{0.32\linewidth}
-		\textbf{Competitors:}
-		\begin{itemize}
-			\item[\textbf{-{}-{}-}] Only RGB [RGB]
-			\item[\textbf{-x-}] Hallucination network$^2$ [RGBtD (Hall)]
-			\item[\textbf{-o-}] Our proposal [RGBtD (our)]
-		\end{itemize}
-	\end{minipage}
-	\textcolor{white}{\footfullcite{Maddern2016}\footfullcite{Hoffman2016}}	
-	}	
+	}
 \end{frame}
+
+%\begin{frame}{Dataset for Localization in challenging conditions}
+%	
+%	\begin{minipage}[t]{0.6\linewidth}
+%		We test our proposal on RobotCar$^1$ dataset with various localization scenarios and different combination of encoders/descriptors.
+%		\vspace{1cm}
+%		
+%		\uncover<3>{
+%		\textbf{Metric:} we compute the distance between \textbf{the top ranked} returned database image position and the query ground truth position and report the percentage of queries well located under a threshold D.
+%		}
+%	\end{minipage}\hfill
+%	\uncover<2->
+%	{
+%	\begin{minipage}[t]{0.32\linewidth}
+%		\textbf{Competitors:}
+%		\begin{itemize}
+%			\item[\textbf{-{}-{}-}] Only RGB [RGB]
+%			\item[\textbf{-x-}] Hallucination network$^2$ [RGBtD (Hall)]
+%			\item[\textbf{-o-}] Our proposal [RGBtD (our)]
+%		\end{itemize}
+%	\end{minipage}
+%	\textcolor{white}{\footfullcite{Maddern2016}\footfullcite{Hoffman2016}}	
+%	}	
+%\end{frame}
 
 %
 %\begin{frame}{Results: cross-season localization}
