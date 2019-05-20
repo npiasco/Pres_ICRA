@@ -1,0 +1,64 @@
+[duration]
+10
+[skip]
+
+[notes]
+### 1
+Hello everyone, my name is Nathan Piasco, I’m a third-year French PhD student and today I will present you my work: “Learning scene geometry for Visual Localization in Challenging conditions”.
+### 3
+Let’s move on a short introduction. I’m interested in visual based localization, that mean we want to  localize an input image according to a known reference.
+### 4
+We admit that we have access to a pool of geolocalized images covering the target area of interest.
+### 5
+So we can cast the localization problem as an image retrieval problem and we can find the most similar candidate to our query in the image database. 
+### 6
+Once we have matched our query image, we can transfer the position of the retrieved candidate to our query. We obtain a coarse pose estimation that can be used as it or as an initialization for a pose refinement step.
+### 7
+The major challenge in visual based localization is the fact that the visual appearance of the same scene can change drastically between two acquisitions. For instance, this four images have been taken at the same place, but present important visual difference due to the changing outdoor condition. These changes can disturb a lot the matching step involved in visual localization.
+### 8
+That is why we propose to rely on the scene geometry to improve the image description. As you can see with the depth map associated to these images, the geometry of the scene should remains stable between different acquisition of the same scene.  
+### 9
+But the scene geometry can be costly to obtain and is not always available. For example, if we consider the localization of a light-weight robot with only a monocular camera, like a UAV, we will not have the depth map associated to the camera.
+### 10
+So the question is: how to benefit from geometric information to describe images even if we do not have access to it during the localization? This is the goal of our method.
+### 12
+Our system is composed of two main components. First we use CNN composed of a deep feature extractor followed by a descriptor pooling layer to construct low dimension global image descriptors.### 13
+These global descriptor can be trained for the specific task of image localization using image triplets and triplet loss function.### 14
+The second component is an encoder decoder network that produces a dense depth map from a monocular image. These network can be trained in a supervised manner with an aligned pair of image and ground truth depth map.### 15
+This is how we combine these two components in our method. We first train powerful image descriptors using an CNN encoder and a descriptor layer.### 16
+Then we use the latent representation computed by our first encoder as input to our decoder and train it to reproduce the depth map associated to the monocular image.### 17
+In a third step, we use the reconstructed depth maps to train a second CNN with a descriptor layer that produce depth map descriptors.### 18
+We finally fuse the two descriptors, the image descriptor and the depth map descriptor, into a single vector.### 19
+It is important to notice that our training framework needs two different type of data to be trained. For the descriptor training, related to CNNs in red, we need image triplet.### 20
+And for the depth from monocular training, related to the CNN decoder, we only need aligned pair of image and depth map.### 21
+Once our system have been trained, we use the following pipeline to localize an image. We use our encoder decoder to reconstruct the geometry of the scene and then we process the image and the depth map with our two CNNs descriptor to get the final global descriptor. We process the reference images in a same manner and then we compare the query descriptor with the reference descriptors by fast nearest neighbor search. We take the position of the closest image returned. As you can see, we do not need real depth information to localize an image.
+
+Let’s see how our method perform.
+### 22
+### 23
+We train and test our method on the RobotCar dataset with multiple localization scenarios. We test various deep encoder architecture and descriptor pooling layers.
+### 24
+We compare our proposal to the hallucination network, that also uses depth information during training and with an RGB baseline trained with only RGB image triplets.### 25
+In order to compare the different methods, we compute the distance between the ground truth position query and the position of the top 1 retrieved candidate after the nearest neighbor search.
+### 26
+This are result from the first experiment that consider long-term localization; that means query images have been acquired 9 month after the images in the database. From left to right you have: examples of queries and the closest images in the database, the figure that represent the percentage of query localized under a given distance, from fifteen to fifty meters, and the legend of the figure where each color represent a different combination of encoder architecture and descriptor pooling layer.
+As we can see, if you compare for each color the plain line with circle, that is our method, to the other ones, our proposal produces the best localization performances, whatever the combination of encoder/descriptor we used.
+### 27
+If we move on a second experiment, we observe that our descriptor perform even better for the winter to summer scenario. As you can see if you look at the image examples, the visual difference between the queries and the database are important and the image-only descriptor, in dotted line, is not as efficient as before compare to our method.### 28
+We can expect a similar performances for the last experiment, that consider night to daylight localization scenario. But as you can see, all the methods completely failed on this dataset. Why do we observe such results?### 29
+We investigate this failure case and we found that our decoder is not able to reproduce proper depth map from night images. The produced depth maps are shown on the last line of the table. Actually this is normal as our network has never seen night images during the training step.
+### 30
+So we propose to focus on improving the performances of our decoder by fine tuning. And thanks to the design of our architecture, this fine tuning will not impact the CNN weights involved in the descriptor creation, only the decoder parameters.
+### 31
+We use less than one thousand pairs of night image with associated depth map during the fine tuning process.### 32
+As you can see, after fine tuning, our network is able to generate proper depth map from night images. You can compare the depth map before and after the fine tuning on the last two lines of the table.### 33
+And finally here are the impact of the fine tuning on the localization performances. As you can see on the right, the global accuracy remains low but our descriptor are two times more efficient than previously.### 34
+### 35
+We have presented a new global image descriptor that benefit from geometric information during training time to be more robust to visual changes. Our experiment have shown that our method can be used for visual localization with image only and performs well on cross-season scenario and produces encouraging result for the complex night to daylight image localization scenario.
+### 36
+In the future we want to investigate the use of other modalities within our framework and also extend our method to other localization task such as direct 6 degrees of freedom camera pose estimation.
+
+Thank you for your attention.
+### 37
+### 38
+Thank you for your attention.
